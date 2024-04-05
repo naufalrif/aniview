@@ -28,7 +28,7 @@ const App = () => {
 
 
     useEffect(() => {
-        searchTitle('akira')
+        searchTitle('one piece')
     },[])
 
     return (
