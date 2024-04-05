@@ -6,7 +6,7 @@ import searchBtn from './search.svg'
 import AnimeCard from './AnimeCard'
 
 
- const API_URL = 'https://anime-db.p.rapidapi.com/anime?page=1&size=10';
+ const API_URL = 'https://anime-db.p.rapidapi.com/anime?page=1&size=20';
  const options = {
     method: 'GET',
     headers: {
@@ -18,6 +18,7 @@ import AnimeCard from './AnimeCard'
 const App = () => {
 
     const [anime, setAnime] = useState([])
+    const [searchBar, setSearchBar] = useState([])
     const searchTitle = async (title) => {
         const response = await fetch(`${API_URL}&search=${title}`, options);
         const result = await response.json()
@@ -28,7 +29,7 @@ const App = () => {
 
 
     useEffect(() => {
-        searchTitle('one piece')
+        searchTitle('')
     },[])
 
     return (
@@ -38,14 +39,14 @@ const App = () => {
             <div className="search">
                 <input  
                     placeholder="Search anime"
-                    value=''
-                    onChange={() => {}}
+                    value={searchBar}
+                    onChange={(e) => setSearchBar(e.target.value)}
                 />
 
                 <img 
                     src={searchBtn}
                     alt="search"
-                    onClick={() => {}}
+                    onClick={(e) => searchTitle(searchBar)}
                 />
             </div>
 
